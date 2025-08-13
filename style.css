@@ -1,195 +1,74 @@
--- Root Variables --
-        :root {
-            --bg-dark: #1a1a1a;
-            --text-light: #f0f0f0;
-            --accent-color: #d4af37; /* Soft gold/rose gold */
-            --font-heading: "Playfair Display", serif;
-            --font-body: "Poppins", sans-serif;
-        }
+/* -- Root Variables -- */
+:root {
+    --bg-dark: #1a1a1a;
+    --text-light: #f0f0f0;
+    --accent-color: #d4af37; /* Soft gold/rose gold */
+    --font-heading: "Playfair Display", serif;
+    --font-body: "Poppins", sans-serif;
+}
 
-        /* -- General Styles -- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* -- General Styles -- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: var(--font-body);
-            color: var(--text-light);
-            background: var(--bg-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+body {
+    font-family: var(--font-body);
+    color: var(--text-light);
+    background: var(--bg-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            text-transform: uppercase;
-            font-weight: 400;
-        }
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 400;
+}
 
-        /* -- Hero Section -- */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-        }
+section {
+    padding: 5rem 2rem;
+}
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 0;
-        }
+/* -- Hero Section -- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
 
-        /* Animasi untuk judul utama */
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 6rem);
-            color: var(--accent-color);
-            font-weight: 300;
-            letter-spacing: 3px;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-        }
+.hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeInSlideUp 2s ease-out;
+}
 
-        .hero-title .word {
-            display: inline-block;
-            transform: translateX(-100vw);
-            opacity: 0;
-            animation: slideInFromLeft 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
+.hero-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--accent-color);
+}
 
-        .hero-title .word:nth-child(1) {
-            animation-delay: 0.5s;
-        }
-
-        .hero-title .word:nth-child(2) {
-            animation-delay: 1s;
-        }
-
-        /* Animasi untuk subtitle */
-        .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            letter-spacing: 5px;
-            font-weight: 300;
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.5s ease-out 2.5s forwards;
-        }
-
-        /* Keyframes untuk animasi slide dari kiri */
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-100vw);
-                opacity: 0;
-            }
-            60% {
-                transform: translateX(10px);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Keyframes untuk animasi fade in up subtitle */
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Efek shimmer pada teks */
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shimmer 3s ease-in-out 3s;
-        }
-
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        /* Dekoratif particles */
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, var(--accent-color), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(212, 175, 55, 0.3), transparent),
-                radial-gradient(1px 1px at 90px 40px, var(--accent-color), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(212, 175, 55, 0.3), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: sparkle 4s linear infinite;
-            pointer-events: none;
-            opacity: 0;
-            animation-delay: 3.5s;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes sparkle {
-            0% {
-                opacity: 0;
-                transform: translateY(0px);
-            }
-            50% {
-                opacity: 0.5;
-                transform: translateY(-10px);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 4rem);
-                letter-spacing: 2px;
-            }
-            
-            .hero-subtitle {
-                letter-spacing: 3px;
-                font-size: clamp(0.9rem, 3vw, 1.2rem);
-            }
-        }
+.hero-subtitle {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    letter-spacing: 5px;
+    font-weight: 300;
+    margin-top: 1rem;
+}
 
 /* -- Gallery Section -- */
 .section-heading {
